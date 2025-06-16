@@ -6,6 +6,8 @@ function App() {
   const [cha, setCha] = useState(false);
   const [num, setNum] = useState(false);
   const [len, setLen] = useState(10);
+  const [upper,setUpper] = useState(false);
+  const [spacial,setSpacial] = useState(false);
   const [pass, setPass] = useState("");
   const ref = useRef(null)
 
@@ -18,9 +20,13 @@ function App() {
     let str = "";
     let pass = "";
 
-    if (num || cha) {
+    if (num || cha || upper || spacial) {
       if (num) str += "1234567890";
       if (cha) str += "abcdefghijklmnopqrstuvwxyz";
+      if (upper) str += "ABCDEFGHIGKLMNOPQURSTUVWXYZ";
+      if (spacial) str += "!@#$%^&*()";
+
+      
 
       for (let i = 0; i < len; i++) {
         pass += str.charAt(Math.floor(Math.random() * str.length));
@@ -77,6 +83,20 @@ function App() {
             value={num}
             setValue={setNum}
             label="Include Numbers"
+            className="w-5 h-5"
+          />
+          <Input
+            type="checkbox"
+            value={upper}
+            setValue={setUpper}
+            label="Include UpperCase"
+            className="w-5 h-5"
+          />
+           <Input
+            type="checkbox"
+            value={spacial}
+            setValue={setSpacial}
+            label="Include Spacial Char"
             className="w-5 h-5"
           />
         </div>
